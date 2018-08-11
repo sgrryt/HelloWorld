@@ -27,10 +27,6 @@ public class loginservlet extends HttpServlet{
 		resp.setContentType("text/html");
 		PrintWriter out=resp.getWriter();
 
-		/*out.println("<body bgcolor='grey>'");
-		out.println("this is username1="+u+"" );
-		out.println("this is password1="+p+"</body>");*/
-
 		Connection con = null;
 		Statement stmt=null;
 		ResultSet rs=null;
@@ -53,7 +49,7 @@ public class loginservlet extends HttpServlet{
 			//out.println(SQL3);
 			out.println();
 			rs=stmt.executeQuery(SQL3);
-			
+
 
 			while(rs.next()) {
 				username=rs.getString(1).trim();
@@ -61,31 +57,29 @@ public class loginservlet extends HttpServlet{
 				System.out.println(username);
 				System.out.println(password);
 			}
-			
+
 			if(username == null && password == null )
 			{
+				out.println("<center>\n<font color=\"red\">Invalid Username Or Password... </font></center>");
 				RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
 				rd.include(req, resp);
-				out.println("Authenication Failed");
 			}
 			else {
-			if(username.equals(u) && password.equals(p)) {
-				
-					//out.println("User Succesfull Login.."); 
-					//RequestDispatcher rd=req.getRequestDispatcher("WelcomeHome");
+				if(username.equals(u) && password.equals(p)) {
+
 					RequestDispatcher rd=req.getRequestDispatcher("home.jsp");
 					HttpSession hs=req.getSession();
-					hs.setAttribute("uname", username);					
-					//out.println("you are in if loop and username="+username+"   u= "+u+" ....");
+					hs.setAttribute("uname", username);	
 					rd.forward(req, resp);
 
-			}else {
-				RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
-				rd.include(req, resp);
-				out.println("Authenication Failed");
-				//resp.sendRedirect("login.jsp");
-			}
-			
+				}else {
+					//out.println("Authenication Failed");
+					out.println("<center>\n<font color=\"red\">Invalid Username Or Password... </font></center>");
+					RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
+					rd.include(req, resp);
+					
+				}
+
 			}
 
 			out.println("<br>\n</br>");

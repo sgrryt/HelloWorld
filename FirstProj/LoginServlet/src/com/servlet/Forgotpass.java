@@ -31,9 +31,11 @@ public class Forgotpass extends HttpServlet{
 		resp.setContentType("text/html");
 		PrintWriter out=resp.getWriter();
 
-		out.println("<body bgcolor='grey>'");
-		out.println("this is username1="+u+"" );
-		out.println("this is password1="+p+"</body>");
+		//out.println("<body bgcolor='fadf7f'>");
+		//out.println("this is username1="+u+"" );
+		//out.println("this is password1="+p+"</body>");
+		//out.println("<head> <link rel=\"stylesheet\" href=\"style.css\" /> <script src=\"script.js\"></script></head>");
+		//out.println("<body><div class=\"grandParentContaniner\"> <div class=\"parentContainer\">");
 
 		Connection con = null;
 		Statement stmt=null;
@@ -70,18 +72,20 @@ public class Forgotpass extends HttpServlet{
 				HttpSession hs=req.getSession();
 				hs.setAttribute("uname",	username);
 				rd.include(req, resp);
+				//out.println("</div></div><body>");
 				rs.close();
 			}else {				
-				out.println("\n"+u+": User does not exist..");
+				out.println("<center>\n<font color=\"red\">"+u+": User does not exist.. </font></center>");
+				//out.println("</div></div><body>");
 				HttpSession session=req.getSession();				
 				RequestDispatcher rd=req.getRequestDispatcher("forgotPW.jsp");
 				rd.include(req, resp);
 			}
-			out.println("<br>\n</br>");
-			
+			//out.println("<br>\n</br>");
+
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-			
+
 		}finally {
 			if (rs != null)
 				try {

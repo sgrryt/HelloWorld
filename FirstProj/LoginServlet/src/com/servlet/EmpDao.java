@@ -24,18 +24,46 @@ public class EmpDao {
 
 		try{  			
 			Connection con=EmpDao.getConnection();  
-			PreparedStatement ps=con.prepareStatement("select * from Userinfo");  
+			PreparedStatement ps=con.prepareStatement("select * from Books");  
 			ResultSet rs=ps.executeQuery();  
 			while(rs.next()){  
 				Emp e=new Emp();  
-				e.setFirstname(rs.getString(1));  
-				e.setLastname(rs.getString(2)); 
+				e.setBookId(rs.getString(1));  
+				e.setBoook_Name(rs.getString(2));
+				e.setAuthor(rs.getString(3));
+				e.setPrice(rs.getString(4));
 				list.add(e);  
 			}  
 			con.close();  
 		}catch(Exception e){e.printStackTrace();}  
 
 		return list;  
-	} 	
+	}
+	
+	public static Emp getEmployee(int bid){  
+		Emp emp=new Emp();  
+
+		try{  			
+			Connection con=EmpDao.getConnection();  
+			PreparedStatement ps=con.prepareStatement("select * from Books where Book_Id ="+bid);  
+			ResultSet rs=ps.executeQuery();  
+			while(rs.next()){  
+				Emp e1=new Emp();  
+				e1.setBookId(rs.getString(1));  
+				e1.setBoook_Name(rs.getString(2));
+				e1.setAuthor(rs.getString(3));
+				e1.setPrice(rs.getString(4));
+				emp=e1;
+			}  
+			con.close();
+			
+		}catch(Exception e){e.printStackTrace();}  
+		finally {
+			
+		}
+		
+		return emp;  
+	}
+	
 
 }

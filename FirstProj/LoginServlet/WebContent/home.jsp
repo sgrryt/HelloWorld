@@ -15,19 +15,22 @@ p.padding2 {
 </head>
 
 <body bgcolor="fadf7f">
-	<h1>Employees List</h1>
-	<p class="padding">
+	
+	<p>
 		<a href='Logout'>Logout</a>
 	</p>
-	<table border='1' width='100%'>
+	<h1 align="center">Employees List</h1>
+	<table border='1' width='100%' align="center">
 		<tr>
-			<th>LastName</th>
-			<th>firstName</th>
+			<th>Book Id</th>
+			<th>Book Name</th>
+			<th>Author</th>
+			<th>Price (Rs)</th>
 		</tr>
 		<%
 			List<Emp> list = EmpDao.getAllEmployees();
 			for (Emp e : list) {
-				out.print("<tr><td>" + e.getFirstname() + "</td><td>" + e.getLastname() + "</td></tr>");
+				out.print("<tr><td>" + e.getBookId() + "</td><td><a href=Book.jsp?bookId="+e.getBookId() +">"+e.getBoook_Name()+"</a></td><td>" + e.getAuthor() + "</td><td>" + e.getPrice() + "</td></tr>");
 				
 		%>
 		<tr>

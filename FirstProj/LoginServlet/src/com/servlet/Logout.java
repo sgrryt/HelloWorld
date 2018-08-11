@@ -19,10 +19,11 @@ public class Logout extends HttpServlet{
 		PrintWriter outL=resp.getWriter();
 		HttpSession session=req.getSession();
 		session.invalidate();
-//		RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
-//		rd.include(req, resp);
-		resp.sendRedirect("login.jsp");
-		outL.println("You have succussfully Logged Out..");
+		outL.println("<center>\n<font color=\"green\">You have succussfully Logged Out..</font></center>");
+		RequestDispatcher rd=req.getRequestDispatcher("login.jsp");
+		rd.include(req, resp);
+//		resp.sendRedirect("login.jsp");
+		
 		outL.close();
 		
 	}

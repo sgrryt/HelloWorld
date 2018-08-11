@@ -11,20 +11,21 @@
 <body >
 	<div class="grandParentContaniner">
 		<div class="parentContainer">
-			<form action="Register" method="post">
-			<h2 class="form-signin">Please Register</h2>
-				Username : <input type="text" name="runame"><br>
-				Password : <input type="password" name="rpass"><br> <input
-					type="submit" name="submit" value="Register Me">
-				<hr>
-			</form>
-			<a href="forgotPW.jsp">Forgot Password</a><br> <a
-				href="login.jsp">Login</a><br>
+			<h1 >- Book Details -</h1>
+			<%			
+			int bid= Integer.parseInt(request.getParameter("bookId"));
+			Emp e1=EmpDao.getEmployee(bid);
+			out.println("<h3>BookName : "+e1.getBoook_Name()+"</h3>");
+			out.println("<h3>Author : "+e1.getAuthor()+"</h3>");
+			out.println("<h3>Price : "+e1.getPrice()+"</h3>");
+			
+			%>			
+			<a href="home.jsp">Back To Book Store</a><br>
+			<a href='Logout'>Logout</a><br>
 		</div>
 	</div>
-	<%
-		
-	%>
-
 </body>
 </html>
+
+<%@ page import="com.servlet.*"%>
+<%@ page import="java.util.List"%>

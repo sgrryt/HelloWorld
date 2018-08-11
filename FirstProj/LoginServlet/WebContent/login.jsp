@@ -8,10 +8,10 @@
 <link rel="stylesheet" href="style.css" />
 <script src="script.js"></script>
 </head>
-<body bgcolor="ff5733">
-	<div class="grandParentContaniner">
+<body >
+	<div class="grandParentContaniner" >
 		<div class="parentContainer">
-			<form bgcolor="ff5733" action="Login" method="post">
+			<form  action="Login" method="post">
 				<h2 class="form-signin">Please sign in</h2>
 				<label>Enter Username : </label> <input type="text" name="user"><br>
 				<label>Enter Password :</label> <input type="password" name="pass"><br>
